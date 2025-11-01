@@ -1,0 +1,70 @@
+version: "3.9"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Medic@123
+      MYSQL_DATABASE: bank
+      MYSQL_USER: medicuser
+      MYSQL_PASSWORD: Medic@123
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./dbinit.sql:/docker-entrypoint-initdb.d/dbinit.sql  # 👈 Mount init script here
+    networks:
+      - app-network
+
+  express-backend:
+    build:
+      context: ./messaging
+    container_name: express_container
+    ports:
+      - "4000:4000"
+    depends_on:
+      - mysql
+    environment:
+      - DB_HOST=mysql
+      - DB_USER=medicuser
+      - DB_PASSWORD=Medic@123
+      - DB_NAME=bank
+    networks:
+      - app-network
+
+  java-service:
+    build:
+      context: ./medic
+    container_name: java_container
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/medic
+      - SPRING_DATASOURCE_USERNAME=medicuser
+      - SPRING_DATASOURCE_PASSWORD=Medic@123
+    networks:
+      - app-network
+
+  react-frontend:
+    build:
+      context: ./messaging-app
+    container_name: react_container
+    ports:
+      - "3000:80"
+    depends_on:
+      - express-backend
+    environment:
+      - REACT_APP_API_URL=http://express-backend:4000
+    networks:
+      - app-network
+
+volumes:
+  mysql-data:
+
+networks:
+  app-network:
+    driver: bridge
