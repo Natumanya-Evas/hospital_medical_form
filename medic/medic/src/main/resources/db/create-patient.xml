@@ -1,0 +1,39 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1-create-patient-table" author="elia">
+        <createTable tableName="patient">
+            <column name="patient_id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="first_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="middle_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_of_birth" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="gender" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="contact_number" type="VARCHAR(20)"/>
+            <column name="bed_id" type="BIGINT"/>
+        </createTable>
+
+        <!-- optional foreign key to Bed table -->
+        <addForeignKeyConstraint baseTableName="patient"
+                                 baseColumnNames="bed_id"
+                                 referencedTableName="bed"
+                                 referencedColumnNames="bed_id"
+                                 constraintName="fk_patient_bed"/>
+    </changeSet>
+
+</databaseChangeLog>

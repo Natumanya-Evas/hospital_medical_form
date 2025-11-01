@@ -1,0 +1,34 @@
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1" author="elijah">
+        <createTable tableName="visit">
+            <column name="visit_id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="reason" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="visit_type" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="visit_date" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_date" type="TIMESTAMP"/>
+            <column name="patient_id" type="INT"/>
+        </createTable>
+
+        <addForeignKeyConstraint 
+            baseTableName="visit" 
+            baseColumnNames="patient_id"
+            referencedTableName="patient"
+            referencedColumnNames="patient_id"
+            onDelete="SET NULL"
+            constraintName="fk_visit_patient"/>
+    </changeSet>
+
+</databaseChangeLog>

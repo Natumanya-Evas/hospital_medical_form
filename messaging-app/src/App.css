@@ -1,0 +1,10 @@
+.users{
+  border: solid white 1px;
+  box-shadow: 0.5rem o.5rem #ddd;
+}
+body {
+  color: color-mix(in srgb, white 50%, black 50%);
+  margin: 0;
+  font-family: 'Times New Roman', Times, serif;
+  background: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
+}

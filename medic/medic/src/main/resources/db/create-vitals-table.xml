@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+      http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1-create-vitals-table" author="evas">
+        <createTable tableName="vitals">
+            <column name="vital_id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="temperature" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="heart_rate" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="blood_pressure_systolic" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="blood_pressure_diastolic" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="respiratory_rate" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="oxygen_saturation" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="note" type="VARCHAR(255)"/>
+            <column name="patient_id" type="BIGINT">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+            baseTableName="vitals"
+            baseColumnNames="patient_id"
+            referencedTableName="patient"
+            referencedColumnNames="patient_id"
+            constraintName="fk_vitals_patient"
+            onDelete="CASCADE"/>
+    </changeSet>
+
+</databaseChangeLog>

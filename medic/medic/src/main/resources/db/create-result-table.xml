@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="20251023-2-create-results" author="evas">
+        <createTable tableName="results">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="result_code" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="result_type" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="test_method" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="notes" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="patient_id" type="INT">
+                <constraints nullable="false" foreignKeyName="fk_result_patient" references="patient(patient_id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

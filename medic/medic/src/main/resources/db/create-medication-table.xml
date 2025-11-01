@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+<changeSet id="1" author="evas">
+    <createTable tableName="medicine_price">
+        <column name="price_id" type="INT" autoIncrement="true">
+            <constraints primaryKey="true" nullable="false"/>
+        </column>
+        <column name="quantity" type="INT">
+            <constraints nullable="false"/>
+        </column>
+        <column name="unit_measure" type="VARCHAR(50)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="price" type="DECIMAL(10,2)">
+            <constraints nullable="false"/>
+        </column>
+    </createTable>
+</changeSet>
+
+<changeSet id="2" author="evas">
+    <createTable tableName="dosage">
+        <column name="id" type="INT" autoIncrement="true">
+            <constraints primaryKey="true" nullable="false"/>
+        </column>
+        <column name="drug_name" type="VARCHAR(100)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="amount" type="VARCHAR(50)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="prescription" type="VARCHAR(255)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="caution" type="VARCHAR(255)"/>
+        <column name="note" type="VARCHAR(255)"/>
+        <column name="medicine_price_id" type="INT"/>
+        <column name="dispenser_id" type="INT"/>
+    </createTable>
+
+    <addForeignKeyConstraint baseTableName="dosage"
+                             baseColumnNames="medicine_price_id"
+                             referencedTableName="medicine_price"
+                             referencedColumnNames="price_id"
+                             constraintName="fk_dosage_medicine_price"/>
+    
+    <addForeignKeyConstraint baseTableName="dosage"
+                             baseColumnNames="dispenser_id"
+                             referencedTableName="dispenser"
+                             referencedColumnNames="id"
+                             constraintName="fk_dosage_dispenser"/>
+</changeSet>
+
+<changeSet id="3" author="evas">
+    <createTable tableName="dispenser">
+        <column name="id" type="INT" autoIncrement="true">
+            <constraints primaryKey="true" nullable="false"/>
+        </column>
+        <column name="work_name" type="VARCHAR(100)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="location" type="VARCHAR(100)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="phone" type="VARCHAR(50)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="email" type="VARCHAR(100)">
+            <constraints nullable="false"/>
+        </column>
+    </createTable>
+</changeSet>
+</databaseChangeLog>

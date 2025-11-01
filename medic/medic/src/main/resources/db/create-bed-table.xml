@@ -1,0 +1,31 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+            http://www.liquibase.org/xml/ns/dbchangelog
+            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1-create-bed-table" author="evas">
+        <createTable tableName="bed">
+            <column name="bed_id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="bed_number" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="bed_row" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="bed_column" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_occupied" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ward_id" type="INT">
+                <constraints nullable="false" foreignKeyName="fk_bed_ward" references="ward(ward_id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

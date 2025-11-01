@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="20251023-1-create-diagnoses" author="evas">
+        <createTable tableName="diagnoses">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="diagnosed" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="symptoms" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="signs" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="treatment" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="patient_id" type="INT">
+                <constraints nullable="true" foreignKeyName="fk_diagnosis_patient" references="patient(patient_id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
