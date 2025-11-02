@@ -137,13 +137,14 @@ const CustomerTable = () => {
   return (
     <div className="p-5">
       <div className="flex justify-between items-center mb-4">
-        <h3 className="text-xl font-semibold">Customer Management</h3>
+        <h2 className="text-xl font-semibold">Employee Management</h2>
         <div className="flex gap-3">
           <TextInput
             id="search"
             labelText=""
-            placeholder="Search customers..."
+            placeholder="Search employee..."
             value={search}
+            style={{margin:"5px"}}
             onChange={(e) => handleSearch(e.target.value)}
           />
           <Button
@@ -155,7 +156,7 @@ const CustomerTable = () => {
             }}
             kind="primary"
           >
-            Add Customer
+            Add Employee
           </Button>
         </div>
       </div>
