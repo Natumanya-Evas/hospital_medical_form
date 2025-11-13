@@ -15,20 +15,19 @@ import DispensersTable from './medicationTable';
 const MedicationManagement = () => {
     return (
         <>
-        <Grid condensed style={{ marginTop: '3rem', border:"solid 1px #ddd" }}>
+        <Grid condensed style={{ marginTop: '3rem', border:"solid 1px #1cf34bff",  padding:"5px" }}>
             <Column sm={4} md={8} lg={16}>
                
-                                <MedicinePriceForm />
-                            
-                                
-                            
+                                <MedicinePriceForm />     
             </Column>
+            <hr />  
                         <Column sm={4} md={8} lg={16}>
                
                                
                                 <DispenserForm />
                             
             </Column>
+            <hr />  
                                   <Column sm={4} md={8} lg={16}>
                
                                

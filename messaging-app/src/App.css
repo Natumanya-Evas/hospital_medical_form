@@ -3,8 +3,8 @@
   box-shadow: 0.5rem o.5rem #ddd;
 }
 body {
-  color: color-mix(in srgb, white 50%, black 50%);
+  color: color-mix(in srgb, rgb(245, 248, 84) 50%, black 50%);
   margin: 0;
   font-family: 'Times New Roman', Times, serif;
-  background: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
+  background: linear-gradient(145deg, #f5d0f0, #d7f8d6, #1f34f0);
 }

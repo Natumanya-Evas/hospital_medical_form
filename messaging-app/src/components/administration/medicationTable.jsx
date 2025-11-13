@@ -35,7 +35,7 @@ const DispensersTable = () => {
         { key: 'location', header: 'Location' },
         { key: 'phone', header: 'Phone' },
         { key: 'email', header: 'Email' },
-        { key: 'dosagesCount', header: 'Medications' },
+        { key: 'dosages', header: 'Medications' },
         { key: 'actions', header: 'Actions' }
     ];
 
@@ -108,13 +108,7 @@ const DispensersTable = () => {
                 <Column sm={4} md={8} lg={16}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
                         <h2>Medication Dispensers</h2>
-                        <Button
-                            kind="primary"
-                            renderIcon={Add}
-                            onClick={() => {/* Add your create logic here */}}
-                        >
-                            Add New Dispenser
-                        </Button>
+
                     </div>
                 </Column>
             </Grid>
@@ -210,7 +204,7 @@ const DispensersTable = () => {
                                                                 onClick={() => handleDelete(dispenser.id)}
                                                             />
                                                         </div>
-                                                    ) : cell.info.header === 'dosagesCount' ? (
+                                                    ) : cell.info.header === 'dosages' ? (
                                                         <Link
                                                             href="#"
                                                             onClick={(e) => {
@@ -218,7 +212,7 @@ const DispensersTable = () => {
                                                                 // View medications logic
                                                             }}
                                                         >
-                                                            {dispenser.dosages?.length || 0} medications
+                                                            {dispenser.dosages.length || 0} medications
                                                         </Link>
                                                     ) : (
                                                         cell.value
